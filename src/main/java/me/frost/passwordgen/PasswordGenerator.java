@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class PasswordGenerator extends Application {
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("UI.fxml")));
@@ -18,6 +19,7 @@ public class PasswordGenerator extends Application {
         primaryStage.setHeight(750);
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("Password Generator by frost#0723");
         primaryStage.show();
     }
 
