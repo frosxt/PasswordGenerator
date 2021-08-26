@@ -32,7 +32,7 @@
                   </Text>
                </children>
             </Pane>
-            <Button fx:id="generateButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#handleGenerateButtonClick" onMouseEntered="#handleGenerateHover" onMouseExited="#handleGenerateHoverAway" prefHeight="70.0" prefWidth="277.0" style="-fx-background-color: #3D285F;" text="Generate Password" textFill="WHITE">
+            <Button fx:id="generateButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#handleGenerateButtonClick" prefHeight="70.0" prefWidth="277.0" style="-fx-background-color: #3D285F;" text="Generate Password" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -46,7 +46,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="settingsButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#handleSettingsButtonClick" onMouseEntered="#handleSettingsHover" onMouseExited="#handleSettingsHoverAway" prefHeight="70.0" prefWidth="277.0" style="-fx-background-color: #3D285F;" text="Settings" textFill="WHITE">
+            <Button fx:id="settingsButton" alignment="BASELINE_LEFT" graphicTextGap="8.0" mnemonicParsing="false" onAction="#handleSettingsButtonClick" prefHeight="70.0" prefWidth="277.0" style="-fx-background-color: #3D285F;" text="Settings" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

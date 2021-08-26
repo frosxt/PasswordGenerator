@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 
 public class ButtonController {
+    private boolean clickedGenerateButton = false;
     private boolean onSettingsPage = false;
     public Button generateButton;
     public Button settingsButton;
@@ -23,6 +24,7 @@ public class ButtonController {
     public Text onOff2;
 
     public void handleGenerateButtonClick() {
+        clickedGenerateButton = !clickedGenerateButton;
         PasswordManager manager = new PasswordManager(50, toggleButton2.isSelected(), toggleButton1.isSelected());
         manager.generatePassword();
 
@@ -30,62 +32,43 @@ public class ButtonController {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
         generateButton.setText("Copied password to clipboard!");
+        setStyle(generateButton, clickedGenerateButton);
         resetGenerateText();
     }
 
     public void handleSettingsButtonClick() {
         onSettingsPage = !onSettingsPage;
-        if (onSettingsPage) {
-            numbersEnabled.setVisible(onSettingsPage);
-            lettersEnabled.setVisible(onSettingsPage);
-            toggleButton1.setVisible(onSettingsPage);
-            toggleButton2.setVisible(onSettingsPage);
-            onOff1.setVisible(onSettingsPage);
-            onOff2.setVisible(onSettingsPage);
-            return;
-        }
         numbersEnabled.setVisible(onSettingsPage);
         lettersEnabled.setVisible(onSettingsPage);
         toggleButton1.setVisible(onSettingsPage);
         toggleButton2.setVisible(onSettingsPage);
         onOff1.setVisible(onSettingsPage);
         onOff2.setVisible(onSettingsPage);
-    }
-
-    public void handleGenerateHover() {
-        generateButton.setStyle("-fx-background-color: #352452");
-    }
-
-    public void handleGenerateHoverAway() {
-        generateButton.setStyle("-fx-background-color: #3D285F");
-    }
-
-    public void handleSettingsHover() {
-        settingsButton.setStyle("-fx-background-color: #352452");
-    }
-
-    public void handleSettingsHoverAway() {
-        settingsButton.setStyle("-fx-background-color: #3D285F");
+        setStyle(settingsButton, onSettingsPage);
     }
 
     public void handleNumbersEnabled() {
-        if (toggleButton1.isSelected()) {
-            onOff1.setText("ON");
-            return;
-        }
-        onOff1.setText("OFF");
+        onOff1.setText(toggleButton1.isSelected() ? "ON" : "OFF");
     }
 
     public void handleLettersEnabled() {
-        if (toggleButton2.isSelected()) {
-            onOff2.setText("ON");
-            return;
-        }
-        onOff2.setText("OFF");
+        onOff2.setText(toggleButton2.isSelected() ? "ON" : "OFF");
     }
 
     private void resetGenerateText() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.5), event -> generateButton.setText("Generate Password")));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.5), event -> {
+            clickedGenerateButton = !clickedGenerateButton;
+            generateButton.setText("Generate Password");
+            setStyle(generateButton, clickedGenerateButton);
+        }));
         timeline.play();
+    }
+
+    private void setStyle(Button button, boolean bool) {
+        if (bool) {
+            button.setStyle("-fx-background-color: #352452");
+            return;
+        }
+        button.setStyle("-fx-background-color: #3D285F");
     }
 }
